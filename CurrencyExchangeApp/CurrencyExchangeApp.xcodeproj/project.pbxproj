@@ -19,6 +19,12 @@
 		6EBC8AD82DFA18FE008DFEFC /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBC8AC52DFA18E4008DFEFC /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6EBC8ADC2DFA1902008DFEFC /* CoreModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBC8AA22DFA14C4008DFEFC /* CoreModels.framework */; };
 		6EBC8ADD2DFA1902008DFEFC /* CoreModels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBC8AA22DFA14C4008DFEFC /* CoreModels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6EBC8B4D2DFA2CCE008DFEFC /* CoreModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBC8AA22DFA14C4008DFEFC /* CoreModels.framework */; };
+		6EBC8B4E2DFA2CCE008DFEFC /* CoreModels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBC8AA22DFA14C4008DFEFC /* CoreModels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6EBC8B522DFA2CD5008DFEFC /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBC8AC52DFA18E4008DFEFC /* Core.framework */; };
+		6EBC8B532DFA2CD5008DFEFC /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBC8AC52DFA18E4008DFEFC /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6EBC8B562DFA2CD5008DFEFC /* CoreModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBC8AA22DFA14C4008DFEFC /* CoreModels.framework */; };
+		6EBC8B572DFA2CD5008DFEFC /* CoreModels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBC8AA22DFA14C4008DFEFC /* CoreModels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +70,27 @@
 			remoteGlobalIDString = 6EBC8AA12DFA14C4008DFEFC;
 			remoteInfo = CoreModels;
 		};
+		6EBC8B4F2DFA2CCE008DFEFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EBC8A4E2DF9F126008DFEFC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6EBC8AA12DFA14C4008DFEFC;
+			remoteInfo = CoreModels;
+		};
+		6EBC8B542DFA2CD5008DFEFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EBC8A4E2DF9F126008DFEFC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6EBC8AC42DFA18E4008DFEFC;
+			remoteInfo = Core;
+		};
+		6EBC8B582DFA2CD5008DFEFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EBC8A4E2DF9F126008DFEFC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6EBC8AA12DFA14C4008DFEFC;
+			remoteInfo = CoreModels;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -89,6 +116,29 @@
 			files = (
 				6EBC8AD82DFA18FE008DFEFC /* Core.framework in Embed Frameworks */,
 				6EBC8ADD2DFA1902008DFEFC /* CoreModels.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EBC8B512DFA2CCE008DFEFC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6EBC8B4E2DFA2CCE008DFEFC /* CoreModels.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EBC8B5A2DFA2CD5008DFEFC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6EBC8B532DFA2CD5008DFEFC /* Core.framework in Embed Frameworks */,
+				6EBC8B572DFA2CD5008DFEFC /* CoreModels.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,6 +240,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EBC8B522DFA2CD5008DFEFC /* Core.framework in Frameworks */,
+				6EBC8B562DFA2CD5008DFEFC /* CoreModels.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +265,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EBC8B4D2DFA2CCE008DFEFC /* CoreModels.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,10 +373,13 @@
 				6EBC8A6E2DFA1265008DFEFC /* Sources */,
 				6EBC8A6F2DFA1265008DFEFC /* Frameworks */,
 				6EBC8A702DFA1265008DFEFC /* Resources */,
+				6EBC8B5A2DFA2CD5008DFEFC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6EBC8B552DFA2CD5008DFEFC /* PBXTargetDependency */,
+				6EBC8B592DFA2CD5008DFEFC /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				6EBC8A732DFA1265008DFEFC /* CurrencyAPI */,
@@ -392,10 +448,12 @@
 				6EBC8AC12DFA18E4008DFEFC /* Sources */,
 				6EBC8AC22DFA18E4008DFEFC /* Frameworks */,
 				6EBC8AC32DFA18E4008DFEFC /* Resources */,
+				6EBC8B512DFA2CCE008DFEFC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6EBC8B502DFA2CCE008DFEFC /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				6EBC8AC62DFA18E4008DFEFC /* Core */,
@@ -563,6 +621,21 @@
 			isa = PBXTargetDependency;
 			target = 6EBC8AA12DFA14C4008DFEFC /* CoreModels */;
 			targetProxy = 6EBC8ADE2DFA1902008DFEFC /* PBXContainerItemProxy */;
+		};
+		6EBC8B502DFA2CCE008DFEFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6EBC8AA12DFA14C4008DFEFC /* CoreModels */;
+			targetProxy = 6EBC8B4F2DFA2CCE008DFEFC /* PBXContainerItemProxy */;
+		};
+		6EBC8B552DFA2CD5008DFEFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6EBC8AC42DFA18E4008DFEFC /* Core */;
+			targetProxy = 6EBC8B542DFA2CD5008DFEFC /* PBXContainerItemProxy */;
+		};
+		6EBC8B592DFA2CD5008DFEFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6EBC8AA12DFA14C4008DFEFC /* CoreModels */;
+			targetProxy = 6EBC8B582DFA2CD5008DFEFC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
