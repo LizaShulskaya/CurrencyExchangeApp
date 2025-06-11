@@ -90,6 +90,13 @@ struct ConverterView: View {
             .onChange(of: viewModel.toCurrency) { _ in
                 Task { await viewModel.convert(context: modelContext) }
             }
+            .toolbar {
+                NavigationLink(destination: HistoryView()) {
+                    Image(systemName: "clock.fill")
+                }
+            }
         }
+      
     }
+    
 }

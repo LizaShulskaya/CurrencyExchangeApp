@@ -7,8 +7,8 @@ import CurrencyDatabase
 @MainActor
 final class ConverterViewModel: ObservableObject {
    
-    @Published var fromCurrency: Currency = .USD
-    @Published var toCurrency: Currency = .RUB
+    @Published public var fromCurrency: Currency = .USD
+    @Published public var toCurrency: Currency = .RUB
     @Published var amount: String = ""
     @Published private(set) var result: Double?
     @Published private(set) var rate: Double?
@@ -51,7 +51,19 @@ final class ConverterViewModel: ObservableObject {
                 return
             }
             self.rate = foundRate
-            self.result = amountValue * foundRate
+            let conversionResult = amountValue * foundRate
+            self.result = conversionResult
+            
+            // Сохраняем запись в историю 
+            let record = ConversionHistoryRecord(
+                fromCurrency: fromCurrency.rawValue,
+                toCurrency: toCurrency.rawValue,
+                amount: amountValue,
+                result: conversionResult,
+                rate: foundRate
+            )
+            context.insert(record)
+            try context.save()
         } catch {
             errorMessage = error.localizedDescription
         }
