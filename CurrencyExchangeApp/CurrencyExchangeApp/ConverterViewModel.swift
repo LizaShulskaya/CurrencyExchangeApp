@@ -6,9 +6,25 @@ import CurrencyDatabase
 
 @MainActor
 final class ConverterViewModel: ObservableObject {
-   
-    @Published public var fromCurrency: Currency = .USD
-    @Published public var toCurrency: Currency = .RUB
+
+    @AppStorage("fromCurrency") private var storedFrom: String = Currency.USD.rawValue
+    @AppStorage("toCurrency")   private var storedTo:   String = Currency.RUB.rawValue
+
+    @Published var fromCurrency: Currency {
+        didSet { storedFrom = fromCurrency.rawValue }
+    }
+    @Published var toCurrency:   Currency {
+        didSet { storedTo = toCurrency.rawValue }
+    }
+
+    init() {
+        let from = Currency(rawValue: UserDefaults.standard.string(forKey: "fromCurrency") ?? "") ?? .USD
+        let to = Currency(rawValue: UserDefaults.standard.string(forKey: "toCurrency") ?? "") ?? .RUB
+
+        self._fromCurrency = Published(initialValue: from)
+        self._toCurrency = Published(initialValue: to)
+    }
+    
     @Published var amount: String = ""
     @Published private(set) var result: Double?
     @Published private(set) var rate: Double?
