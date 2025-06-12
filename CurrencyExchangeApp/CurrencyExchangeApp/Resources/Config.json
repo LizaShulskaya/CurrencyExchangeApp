@@ -1,4 +1,5 @@
 {
   "apiKey": "fca_live_qMlCLQVHXfpdx57jDuOVZnZ34nZsHle5N66UGJT1",
-  "baseURL": "https://api.freecurrencyapi.com/v1/latest"
+  "baseURL": "https://api.freecurrencyapi.com/v1/latest",
+  "cacheTimeout": 60
 }

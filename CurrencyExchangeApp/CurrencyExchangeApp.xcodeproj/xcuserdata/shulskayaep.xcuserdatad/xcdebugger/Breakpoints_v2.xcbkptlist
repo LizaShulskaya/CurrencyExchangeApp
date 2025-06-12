@@ -96,5 +96,83 @@
             landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9453E2B9-4235-44FE-B6AC-2C62C02957A2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyRateService/CurrencyRateServiceProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "getRates(base:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9453E2B9-4235-44FE-B6AC-2C62C02957A2 - 4a29988b0485d209"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for CurrencyRateService.CurrencyRateServiceProvider.getRates(base: CurrencyAPI.Currency) async throws -&gt; CurrencyAPI.ExchangeRate"
+                  moduleName = "CurrencyRateService"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shulskayaep/Documents/currencyApp/CurrencyExchangeApp/CurrencyRateService/CurrencyRateServiceProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51">
+               </Location>
+               <Location
+                  uuid = "9453E2B9-4235-44FE-B6AC-2C62C02957A2 - a59c5b3257053068"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for CurrencyRateService.CurrencyRateServiceProvider.getRates(base: CurrencyAPI.Currency) async throws -&gt; CurrencyAPI.ExchangeRate"
+                  moduleName = "CurrencyRateService"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shulskayaep/Documents/currencyApp/CurrencyExchangeApp/CurrencyRateService/CurrencyRateServiceProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3EBA8D91-74F4-4877-8B85-7D4C6017DA56"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyRateService/CurrencyRateServiceProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "getRates(base:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E5CA866-BC01-4063-9690-BD3DFE43D0A9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyRateService/CurrencyRateServiceProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "getRates(base:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

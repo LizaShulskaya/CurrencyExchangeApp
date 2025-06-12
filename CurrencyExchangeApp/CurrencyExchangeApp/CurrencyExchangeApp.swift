@@ -20,16 +20,19 @@ struct CurrencyConverterApp: App {
         // Конфигурация API
         do {
             let config = try AppProperties.getConfig()
+            
+            // Сервисы
             self.apiService = CurrencyAPIService(apiKey: config.apiKey, baseURL: config.baseURL)
+            self.databaseService = CurrencyDatabaseService(context: container.mainContext)
+            self.currencyRateService = CurrencyRateServiceProvider(apiService: apiService,
+                                                                   databaseService: databaseService,
+                                                                   cacheTimeout: config.cacheTimeout)
         } catch {
             fatalError("Failed to load configuration: \(error)")
         }
 
-        // Сервисы
-        self.databaseService = CurrencyDatabaseService(context: container.mainContext)
+        // Хранилище пользовательских настроек
         self.settingsStorage = UserDefaultsSettingsStorage()
-        self.currencyRateService = CurrencyRateServiceProvider(apiService: apiService,
-                                                               databaseService: databaseService)
 
         // ViewModel со всеми зависимостями
         self.viewModel = ConverterViewModel(

@@ -15,11 +15,11 @@ public final class CurrencyRateServiceProvider {
      - parameters:
         - apiService: Сервис, реализующий запросы к внешнему API.
         - databaseService: Сервис работы с локальной базой данных (SwiftData).
-        - cacheTimeout: Время жизни кеша в секундах. По умолчанию 60 секунд.
+        - cacheTimeout: Время жизни кеша в секундах.
      */
     public init(apiService: CurrencyAPIService,
                 databaseService: CurrencyDatabaseService,
-                cacheTimeout: TimeInterval = 60) {
+                cacheTimeout: TimeInterval) {
         self.apiService = apiService
         self.databaseService = databaseService
         self.cacheTimeout = cacheTimeout
