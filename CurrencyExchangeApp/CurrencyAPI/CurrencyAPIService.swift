@@ -1,23 +1,36 @@
-import CoreModels
-import Core
+import Foundation
 
-public final class CurrencyAPIService: ExchangeRateProvider {
+public final class CurrencyAPIService {
     private let apiKey: String
-
-    public init(apiKey: String) {
+    private let baseURL: URL
+    
+    public init(apiKey: String,
+                baseURL: URL) {
         self.apiKey = apiKey
+        self.baseURL = baseURL
     }
     
-    private let baseURL = "https://api.freecurrencyapi.com/v1/latest"
-
     public func fetchRates(base: Currency) async throws -> ExchangeRate {
-        var components = URLComponents(string: baseURL)!
+        guard var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: false) else {
+            throw URLError(.badURL)
+        }
+
         components.queryItems = [
             URLQueryItem(name: "apikey", value: apiKey),
             URLQueryItem(name: "base_currency", value: base.rawValue)
         ]
 
-        let (data, _) = try await URLSession.shared.data(from: components.url!)
+        guard let url = components.url else {
+            throw URLError(.badURL)
+        }
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200..<300).contains(httpResponse.statusCode) else {
+            throw URLError(.badServerResponse)
+        }
+
         return try JSONDecoder().decode(ExchangeRate.self, from: data)
     }
 }

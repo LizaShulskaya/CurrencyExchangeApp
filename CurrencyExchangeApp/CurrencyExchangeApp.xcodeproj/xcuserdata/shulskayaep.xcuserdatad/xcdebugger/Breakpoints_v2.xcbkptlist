@@ -35,15 +35,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8362D272-6F8A-4E17-BBC4-D7B6C045AEEF"
+            uuid = "639FA54B-0930-4C32-82C8-0196AC1AC32F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CurrencyExchangeApp/ExchangeRateManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "getRates(base:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -51,15 +51,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5112F12F-B97D-4260-9396-4168FC6B4213"
+            uuid = "473B9620-4BE6-4480-9877-C9958E3D77E4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CurrencyExchangeApp/ExchangeRateManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "getRates(base:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -67,15 +67,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1049D54E-2529-4858-8271-C1E676E9CA62"
+            uuid = "74937427-CB8C-455E-89DB-18EA1E7CCD2B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CurrencyExchangeApp/ExchangeRateManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "getRates(base:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -83,17 +83,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2F419A3C-4335-44E7-A939-8874C6F1DFE7"
+            uuid = "DAAF76DB-7D14-4942-A17C-9E256C37EC41"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CurrencyExchangeApp/ExchangeRateManager.swift"
+            filePath = "CurrencyRateService/CurrencyRateServiceProvider.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "getRates(base:)"
-            landmarkType = "7">
+            startingLineNumber = "1"
+            endingLineNumber = "1"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

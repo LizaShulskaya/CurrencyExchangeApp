@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
-import CoreModels
+import CurrencyRateService
+import CurrencyAPI
 
 /**
  Экран конвертера валют.
@@ -9,7 +10,7 @@ import CoreModels
  */
 struct ConverterView: View {
     @Environment(\.modelContext) private var modelContext
-    @StateObject private var viewModel = ConverterViewModel()
+    @StateObject private var viewModel = ConverterViewModel(settingsStorage: UserDefaultsSettingsStorage())
 
     var body: some View {
         NavigationStack {
@@ -86,13 +87,13 @@ struct ConverterView: View {
             .navigationTitle(Strings.converterNavigationTitle)
             .padding(.top)
             // Автоматически запускаем расчёт при изменении любого из полей
-            .onChange(of: viewModel.amount) { _ in
+            .onChange(of: viewModel.amount) {
                 Task { await viewModel.convert(context: modelContext) }
             }
-            .onChange(of: viewModel.fromCurrency) { _ in
+            .onChange(of: viewModel.fromCurrency) {
                 Task { await viewModel.convert(context: modelContext) }
             }
-            .onChange(of: viewModel.toCurrency) { _ in
+            .onChange(of: viewModel.toCurrency) {
                 Task { await viewModel.convert(context: modelContext) }
             }
             .toolbar {

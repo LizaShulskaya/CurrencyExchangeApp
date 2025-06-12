@@ -1,7 +1,4 @@
 import SwiftData
-import CoreModels
-
-import SwiftData
 
 @Model
 public final class ConversionHistoryRecord {

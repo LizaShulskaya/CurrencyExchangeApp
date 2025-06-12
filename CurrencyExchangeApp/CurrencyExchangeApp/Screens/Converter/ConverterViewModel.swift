@@ -1,28 +1,39 @@
 import SwiftUI
 import SwiftData
-import CoreModels
+import CurrencyRateService
 import CurrencyAPI
 import CurrencyDatabase
 
 @MainActor
 final class ConverterViewModel: ObservableObject {
 
-    @AppStorage("fromCurrency") private var storedFrom: String = Currency.USD.rawValue
-    @AppStorage("toCurrency")   private var storedTo:   String = Currency.RUB.rawValue
+    // Хранилище пользовательских настроек
+    private var settingsStorage: UserSettingsStorage
+    
+    private let apiService: CurrencyAPIService
 
+    // Исходная валюта
     @Published var fromCurrency: Currency {
-        didSet { storedFrom = fromCurrency.rawValue }
+        didSet { settingsStorage.lastUsedFromCurrency = fromCurrency }
     }
-    @Published var toCurrency:   Currency {
-        didSet { storedTo = toCurrency.rawValue }
+    // Целевая валюта
+    @Published var toCurrency: Currency {
+        didSet { settingsStorage.lastUsedToCurrency = toCurrency }
     }
 
-    init() {
-        let from = Currency(rawValue: UserDefaults.standard.string(forKey: "fromCurrency") ?? "") ?? .USD
-        let to = Currency(rawValue: UserDefaults.standard.string(forKey: "toCurrency") ?? "") ?? .RUB
-
-        self._fromCurrency = Published(initialValue: from)
-        self._toCurrency = Published(initialValue: to)
+    init(settingsStorage: UserSettingsStorage) {
+        self.settingsStorage = settingsStorage
+        let savedFrom = settingsStorage.lastUsedFromCurrency
+        let savedTo = settingsStorage.lastUsedToCurrency
+        self._fromCurrency = Published(initialValue: savedFrom)
+        self._toCurrency = Published(initialValue: savedTo)
+        
+        do {
+            let config = try AppProperties.getConfig()
+            self.apiService = CurrencyAPIService(apiKey: config.apiKey, baseURL: config.baseURL)
+        } catch {
+            fatalError("Failed to load configuration: \(error)")
+        }
     }
     
     @Published var amount: String = ""
@@ -38,8 +49,6 @@ final class ConverterViewModel: ObservableObject {
             return "-"
         }
     }
- 
-    private let apiService = CurrencyAPIService(apiKey: AppProperties.shared.apiKey)
     
     func convert(context: ModelContext) async {
         errorMessage = nil
@@ -54,32 +63,21 @@ final class ConverterViewModel: ObservableObject {
         isLoading = true
         defer { isLoading = false }
         
-        let cacheService = CachedExchangeRateService(context: context)
-        let manager = ExchangeRateManager(
+        let databaseService = CurrencyDatabaseService(context: context)
+        let currencyRateService = CurrencyRateServiceProvider(
             apiService: apiService,
-            cacheService: cacheService
+            databaseService: databaseService
         )
         
         do {
-            let exchangeRate = try await manager.getRates(base: fromCurrency)
-            guard let foundRate = exchangeRate.rates[toCurrency.rawValue] else {
-                errorMessage = Strings.errorRateNotFound(toCurrency.rawValue)
-                return
-            }
-            self.rate = foundRate
-            let conversionResult = amountValue * foundRate
-            self.result = conversionResult
-            
-            // Сохраняем запись в историю 
-            let record = ConversionHistoryRecord(
-                fromCurrency: fromCurrency.rawValue,
-                toCurrency: toCurrency.rawValue,
+            let conversion = try await currencyRateService.convertWithSave(
                 amount: amountValue,
-                result: conversionResult,
-                rate: foundRate
+                from: fromCurrency,
+                to: toCurrency,
+                context: context
             )
-            context.insert(record)
-            try context.save()
+            self.result = conversion.result
+            self.rate = conversion.rate
         } catch {
             errorMessage = error.localizedDescription
         }

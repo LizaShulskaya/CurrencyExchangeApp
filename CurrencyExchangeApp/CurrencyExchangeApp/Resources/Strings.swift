@@ -13,3 +13,4 @@ struct Strings {
         String(format: NSLocalizedString("error_rate_not_found", bundle: .main, comment: ""), currency)
     }
 }
+
