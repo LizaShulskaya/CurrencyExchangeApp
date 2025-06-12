@@ -1,0 +1,8 @@
+"amount_label_title" = "Сумма";
+"zero" = "0";
+"rate_label_title" = "Курс:";
+"converter_navigation_title" = "Конвертер валют";
+"error_invalid_amount" = "Введите корректную сумму";
+"error_rate_not_found" = "Курс для %@ не найден";
+"history_navigation_title" = "История конверсий";
+"search_placeholder" = "Например USD/RUB";

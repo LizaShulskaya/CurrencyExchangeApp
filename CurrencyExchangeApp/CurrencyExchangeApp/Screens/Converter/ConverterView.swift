@@ -2,6 +2,11 @@ import SwiftUI
 import SwiftData
 import CoreModels
 
+/**
+ Экран конвертера валют.
+ 
+ При изменении суммы или валют автоматически запускается пересчет через ViewModel.
+ */
 struct ConverterView: View {
     @Environment(\.modelContext) private var modelContext
     @StateObject private var viewModel = ConverterViewModel()
@@ -12,7 +17,7 @@ struct ConverterView: View {
                 // Ввод
                 VStack(spacing: 8) {
                     HStack {
-                        Text("Сумма, \(viewModel.fromCurrency.rawValue)")
+                        Text("\(Strings.amountLabelTitle), \(viewModel.fromCurrency.rawValue)")
                             .font(.caption)
                             .foregroundColor(.secondary)
                         Spacer()
@@ -20,7 +25,7 @@ struct ConverterView: View {
                     .padding(.horizontal)
 
                     HStack(spacing: 12) {
-                        TextField("0", text: $viewModel.amount)
+                        TextField(Strings.zero, text: $viewModel.amount)
                             .keyboardType(.decimalPad)
                             .textFieldStyle(.roundedBorder)
                             .frame(maxWidth: .infinity)
@@ -39,7 +44,7 @@ struct ConverterView: View {
                 // Результат
                 VStack(spacing: 8) {
                     HStack {
-                        Text("Сумма, \(viewModel.toCurrency.rawValue)")
+                        Text("\(Strings.amountLabelTitle), \(viewModel.toCurrency.rawValue)")
                             .font(.caption)
                             .foregroundColor(.secondary)
                         Spacer()
@@ -66,7 +71,7 @@ struct ConverterView: View {
 
                 // Курс
                 if let rate = viewModel.rate {
-                    Text("Курс: 1 \(viewModel.fromCurrency.rawValue) = \(rate, specifier: "%.4f") \(viewModel.toCurrency.rawValue)")
+                    Text("\(Strings.rateLabelTitle) 1 \(viewModel.fromCurrency.rawValue) = \(rate, specifier: "%.4f") \(viewModel.toCurrency.rawValue)")
                         .font(.footnote)
                         .foregroundColor(.secondary)
                 }
@@ -78,7 +83,7 @@ struct ConverterView: View {
 
                 Spacer()
             }
-            .navigationTitle("Конвертер валют")
+            .navigationTitle(Strings.converterNavigationTitle)
             .padding(.top)
             // Автоматически запускаем расчёт при изменении любого из полей
             .onChange(of: viewModel.amount) { _ in

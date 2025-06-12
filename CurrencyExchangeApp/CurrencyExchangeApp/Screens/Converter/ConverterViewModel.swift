@@ -38,8 +38,8 @@ final class ConverterViewModel: ObservableObject {
             return "-"
         }
     }
-    
-    private let apiService = CurrencyAPIService.shared
+ 
+    private let apiService = CurrencyAPIService(apiKey: AppProperties.shared.apiKey)
     
     func convert(context: ModelContext) async {
         errorMessage = nil
@@ -47,7 +47,7 @@ final class ConverterViewModel: ObservableObject {
         rate = nil
         
         guard let amountValue = Double(amount.replacingOccurrences(of: ",", with: ".")) else {
-            errorMessage = "Введите корректную сумму"
+            errorMessage = Strings.errorInvalidAmount
             return
         }
         
@@ -63,7 +63,7 @@ final class ConverterViewModel: ObservableObject {
         do {
             let exchangeRate = try await manager.getRates(base: fromCurrency)
             guard let foundRate = exchangeRate.rates[toCurrency.rawValue] else {
-                errorMessage = "Курс для \(toCurrency.rawValue) не найден"
+                errorMessage = Strings.errorRateNotFound(toCurrency.rawValue)
                 return
             }
             self.rate = foundRate

@@ -1,0 +1,8 @@
+"amount_label_title" = "Amount";
+"zero" = "0";
+"rate_label_title" = "Rate:";
+"converter_navigation_title" = "Currency converter";
+"error_invalid_amount" = "Please enter a valid amount";
+"error_rate_not_found" = "Rate for %@ not found";
+"history_navigation_title" = "Conversion history";
+"search_placeholder" = "e.g. USD/RUB";

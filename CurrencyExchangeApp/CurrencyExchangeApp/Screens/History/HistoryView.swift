@@ -2,6 +2,12 @@ import SwiftUI
 import SwiftData
 import CurrencyDatabase
 
+/**
+ Экран истории конверсий.
+ 
+ Реализует отображении всех выполненных конвертаций и реализует поиск по валютной паре.
+ */
+
 struct HistoryView: View {
     @Environment(\.modelContext) private var context
     @State private var searchText: String = ""
@@ -29,17 +35,17 @@ struct HistoryView: View {
                     Text("\(record.fromCurrency) → \(record.toCurrency)")
                         .font(.headline)
                     Text("\(record.amount, specifier: "%.2f") → \(record.result, specifier: "%.2f")")
-                    Text("Курс: \(record.rate, specifier: "%.4f")")
+                    Text("\(Strings.rateLabelTitle) \(record.rate, specifier: "%.4f")")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
-                    Text(record.date, style: .date)
+                    Text(record.date.formatted(date: .abbreviated, time: .shortened))
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
                 .padding(.vertical, 4)
             }
         }
-        .navigationTitle("История конверсий")
-        .searchable(text: $searchText, prompt: "Например USD/RUB")
+        .navigationTitle(Strings.historyNavigationTitle)
+        .searchable(text: $searchText, prompt: Strings.searchPlaceholder)
     }
 }

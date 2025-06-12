@@ -2,9 +2,12 @@ import CoreModels
 import Core
 
 public final class CurrencyAPIService: ExchangeRateProvider {
-    public static let shared = CurrencyAPIService()
+    private let apiKey: String
 
-    private let apiKey = "fca_live_qMlCLQVHXfpdx57jDuOVZnZ34nZsHle5N66UGJT1"
+    public init(apiKey: String) {
+        self.apiKey = apiKey
+    }
+    
     private let baseURL = "https://api.freecurrencyapi.com/v1/latest"
 
     public func fetchRates(base: Currency) async throws -> ExchangeRate {
@@ -15,7 +18,6 @@ public final class CurrencyAPIService: ExchangeRateProvider {
         ]
 
         let (data, _) = try await URLSession.shared.data(from: components.url!)
-        print(String(data: data, encoding: .utf8))
         return try JSONDecoder().decode(ExchangeRate.self, from: data)
     }
 }
