@@ -14,7 +14,7 @@ public final class CurrencyDatabaseService {
     /**
      Возвращает кешированную запись с курсами валют для указанной базовой валюты
      - parameters:
-     - base: Базовая валюта, относительно которой были сохранены курсы.
+        - base: Базовая валюта, относительно которой были сохранены курсы.
      - returns: Объект `ExchangeRateCache`, если найден; иначе — `nil`.
      - throws: Ошибка, если запрос к базе данных завершился ошибкой.
      */
@@ -51,6 +51,11 @@ public final class CurrencyDatabaseService {
         try context.save()
     }
 
+    /**
+     Сохраняет запись в историю проведенных операций
+     - parameters:
+        - record: модель дынных для записи в БД
+     */
     public func saveConversion(_ record: ConversionHistoryRecord) throws {
         context.insert(record)
         try context.save()
