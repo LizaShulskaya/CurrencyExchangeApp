@@ -9,8 +9,11 @@ import CurrencyAPI
  При изменении суммы или валют автоматически запускается пересчет через ViewModel.
  */
 struct ConverterView: View {
-    @Environment(\.modelContext) private var modelContext
-    @StateObject private var viewModel = ConverterViewModel(settingsStorage: UserDefaultsSettingsStorage())
+    @ObservedObject private var viewModel: ConverterViewModel
+    
+    init(viewModel: ConverterViewModel) {
+        _viewModel = ObservedObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
         NavigationStack {
@@ -88,13 +91,13 @@ struct ConverterView: View {
             .padding(.top)
             // Автоматически запускаем расчёт при изменении любого из полей
             .onChange(of: viewModel.amount) {
-                Task { await viewModel.convert(context: modelContext) }
+                Task { await viewModel.convert() }
             }
             .onChange(of: viewModel.fromCurrency) {
-                Task { await viewModel.convert(context: modelContext) }
+                Task { await viewModel.convert() }
             }
             .onChange(of: viewModel.toCurrency) {
-                Task { await viewModel.convert(context: modelContext) }
+                Task { await viewModel.convert() }
             }
             .toolbar {
                 NavigationLink(destination: HistoryView()) {

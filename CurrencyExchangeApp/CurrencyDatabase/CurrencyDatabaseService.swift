@@ -1,6 +1,9 @@
 import SwiftData
 import CurrencyAPI
 
+/**
+ Сервис для работы с локальным хранилищем курсов валют на базе SwiftData.
+ */
 public final class CurrencyDatabaseService {
     public let context: ModelContext
     
@@ -11,7 +14,9 @@ public final class CurrencyDatabaseService {
     /**
      Возвращает кешированную запись с курсами валют для указанной базовой валюты
      - parameters:
-        - base: базовая валюта
+     - base: Базовая валюта, относительно которой были сохранены курсы.
+     - returns: Объект `ExchangeRateCache`, если найден; иначе — `nil`.
+     - throws: Ошибка, если запрос к базе данных завершился ошибкой.
      */
     public func fetchCache(base: Currency) throws -> ExchangeRateCache? {
         let request = FetchDescriptor<ExchangeRateCache>(
@@ -23,8 +28,9 @@ public final class CurrencyDatabaseService {
     /**
      Сохраняет курсы в локальное хранилище SwiftData
      - parameters:
-        - base: базовая валюта
-        - rates: модель ExchangeRate с полем rates: [String: Double]
+        - base: Базовая валюта, к которой относятся переданные курсы.
+        - rates: Модель ExchangeRate с полем rates: [String: Double]
+     - throws: Ошибка при сохранении.
      */
     public func saveRates(base: Currency, rates: ExchangeRate) throws {
         // Удаляем старые кеш-записи для данной базовой валюты
@@ -45,4 +51,8 @@ public final class CurrencyDatabaseService {
         try context.save()
     }
 
+    public func saveConversion(_ record: ConversionHistoryRecord) throws {
+        context.insert(record)
+        try context.save()
+    }
 }

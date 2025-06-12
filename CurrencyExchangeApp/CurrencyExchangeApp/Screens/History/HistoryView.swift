@@ -9,7 +9,6 @@ import CurrencyDatabase
  */
 
 struct HistoryView: View {
-    @Environment(\.modelContext) private var context
     @State private var searchText: String = ""
     
     // Запрашиваем все записи, отсортированные по дате 

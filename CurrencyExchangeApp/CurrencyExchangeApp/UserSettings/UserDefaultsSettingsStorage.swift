@@ -1,7 +1,6 @@
 import Foundation
 import CurrencyAPI
 
-
 /**
  Реализация хранилища на основе UserDefaults.
  */

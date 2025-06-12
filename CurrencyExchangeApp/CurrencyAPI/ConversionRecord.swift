@@ -1,5 +1,8 @@
 import Foundation
 
+/**
+ Модель записи истории конвертации валют.
+ */
 public struct ConversionRecord: Identifiable, Codable {
     public var id: UUID
     let from: Currency

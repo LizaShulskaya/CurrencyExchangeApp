@@ -1,3 +1,6 @@
+/**
+ Перечисление поддерживаемых валют с их кодами и флагами.
+ */
 public enum Currency: String, CaseIterable, Codable, Identifiable {
     case USD, EUR, RUB, GBP, CHF, CNY
 

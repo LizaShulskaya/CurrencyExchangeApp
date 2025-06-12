@@ -10,7 +10,7 @@ final class ConverterViewModel: ObservableObject {
     // Хранилище пользовательских настроек
     private var settingsStorage: UserSettingsStorage
     
-    private let apiService: CurrencyAPIService
+    private let currencyRateService: CurrencyRateServiceProvider
 
     // Исходная валюта
     @Published var fromCurrency: Currency {
@@ -21,19 +21,14 @@ final class ConverterViewModel: ObservableObject {
         didSet { settingsStorage.lastUsedToCurrency = toCurrency }
     }
 
-    init(settingsStorage: UserSettingsStorage) {
+    init(settingsStorage: UserSettingsStorage,
+         currencyRateService: CurrencyRateServiceProvider) {
         self.settingsStorage = settingsStorage
+        self.currencyRateService = currencyRateService
         let savedFrom = settingsStorage.lastUsedFromCurrency
         let savedTo = settingsStorage.lastUsedToCurrency
         self._fromCurrency = Published(initialValue: savedFrom)
         self._toCurrency = Published(initialValue: savedTo)
-        
-        do {
-            let config = try AppProperties.getConfig()
-            self.apiService = CurrencyAPIService(apiKey: config.apiKey, baseURL: config.baseURL)
-        } catch {
-            fatalError("Failed to load configuration: \(error)")
-        }
     }
     
     @Published var amount: String = ""
@@ -50,7 +45,7 @@ final class ConverterViewModel: ObservableObject {
         }
     }
     
-    func convert(context: ModelContext) async {
+    func convert() async {
         errorMessage = nil
         result = nil
         rate = nil
@@ -63,18 +58,11 @@ final class ConverterViewModel: ObservableObject {
         isLoading = true
         defer { isLoading = false }
         
-        let databaseService = CurrencyDatabaseService(context: context)
-        let currencyRateService = CurrencyRateServiceProvider(
-            apiService: apiService,
-            databaseService: databaseService
-        )
-        
         do {
             let conversion = try await currencyRateService.convertWithSave(
                 amount: amountValue,
                 from: fromCurrency,
-                to: toCurrency,
-                context: context
+                to: toCurrency
             )
             self.result = conversion.result
             self.rate = conversion.rate
