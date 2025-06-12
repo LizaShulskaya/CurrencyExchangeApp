@@ -12,5 +12,9 @@ struct Strings {
     static func errorRateNotFound(_ currency: String) -> String {
         String(format: NSLocalizedString("error_rate_not_found", bundle: .main, comment: ""), currency)
     }
+    
+    static let emptyList = NSLocalizedString("emptyList", bundle: .main, comment: "")
+    static let noResultsMessage = NSLocalizedString("noResultsMessage", bundle: .main, comment: "")
+    static let noOperationsMessage = NSLocalizedString("noOperationsMessage", bundle: .main, comment: "")
 }
 

@@ -26,22 +26,38 @@ struct HistoryView: View {
             return pair.localizedCaseInsensitiveContains(searchText)
         }
     }
-    
+
     var body: some View {
-        List {
-            ForEach(filteredRecords) { record in
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("\(record.fromCurrency) → \(record.toCurrency)")
-                        .font(.headline)
-                    Text("\(record.amount, specifier: "%.2f") → \(record.result, specifier: "%.2f")")
-                    Text("\(Strings.rateLabelTitle) \(record.rate, specifier: "%.4f")")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Text(record.date.formatted(date: .abbreviated, time: .shortened))
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+        Group {
+            if filteredRecords.isEmpty {
+                ContentUnavailableView(
+                    label: {
+                        Label(Strings.emptyList, systemImage: "clock")
+                    },
+                    description: {
+                        Text(searchText.isEmpty
+                             ? Strings.noOperationsMessage
+                             : Strings.noResultsMessage
+                        )
+                    }
+                )
+            } else {
+                List {
+                    ForEach(filteredRecords) { record in
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("\(record.fromCurrency) → \(record.toCurrency)")
+                                .font(.headline)
+                            Text("\(record.amount, specifier: "%.2f") → \(record.result, specifier: "%.2f")")
+                            Text("\(Strings.rateLabelTitle) \(record.rate, specifier: "%.4f")")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            Text(record.date.formatted(date: .abbreviated, time: .shortened))
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(.vertical, 4)
+                    }
                 }
-                .padding(.vertical, 4)
             }
         }
         .navigationTitle(Strings.historyNavigationTitle)

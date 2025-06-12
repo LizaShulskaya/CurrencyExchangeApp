@@ -110,36 +110,6 @@
             endingLineNumber = "51"
             landmarkName = "getRates(base:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9453E2B9-4235-44FE-B6AC-2C62C02957A2 - 4a29988b0485d209"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for CurrencyRateService.CurrencyRateServiceProvider.getRates(base: CurrencyAPI.Currency) async throws -&gt; CurrencyAPI.ExchangeRate"
-                  moduleName = "CurrencyRateService"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shulskayaep/Documents/currencyApp/CurrencyExchangeApp/CurrencyRateService/CurrencyRateServiceProvider.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51">
-               </Location>
-               <Location
-                  uuid = "9453E2B9-4235-44FE-B6AC-2C62C02957A2 - a59c5b3257053068"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for CurrencyRateService.CurrencyRateServiceProvider.getRates(base: CurrencyAPI.Currency) async throws -&gt; CurrencyAPI.ExchangeRate"
-                  moduleName = "CurrencyRateService"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shulskayaep/Documents/currencyApp/CurrencyExchangeApp/CurrencyRateService/CurrencyRateServiceProvider.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

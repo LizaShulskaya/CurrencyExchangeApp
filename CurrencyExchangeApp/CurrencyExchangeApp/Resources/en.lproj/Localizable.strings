@@ -6,3 +6,6 @@
 "error_rate_not_found" = "Rate for %@ not found";
 "history_navigation_title" = "Conversion history";
 "search_placeholder" = "e.g. USD/RUB";
+"emptyList" = "No Records";
+"noResultsMessage" = "No results found.";
+"noOperationsMessage" = "History is empty. Make your first conversion!";

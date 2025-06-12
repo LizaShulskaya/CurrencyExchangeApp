@@ -6,3 +6,6 @@
 "error_rate_not_found" = "Курс для %@ не найден";
 "history_navigation_title" = "История конверсий";
 "search_placeholder" = "Например USD/RUB";
+"emptyList" = "Нет записей";
+"noResultsMessage" = "Нет результатов по запросу.";
+"noOperationsMessage" = "История пока пуста. Совершите первую конвертацию!";
