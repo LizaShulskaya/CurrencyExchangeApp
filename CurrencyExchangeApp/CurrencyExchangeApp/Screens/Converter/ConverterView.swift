@@ -36,7 +36,7 @@ struct ConverterView: View {
 
                         Picker("", selection: $viewModel.fromCurrency) {
                             ForEach(Currency.allCases) { c in
-                                Text(c.flag).tag(c)
+                                Text("\(c.rawValue) \(c.flag)").tag(c)
                             }
                         }
                         .pickerStyle(.menu)
@@ -64,7 +64,7 @@ struct ConverterView: View {
 
                         Picker("", selection: $viewModel.toCurrency) {
                             ForEach(Currency.allCases) { c in
-                                Text(c.flag).tag(c)
+                                Text("\(c.rawValue) \(c.flag)").tag(c)
                             }
                         }
                         .pickerStyle(.menu)
@@ -90,8 +90,13 @@ struct ConverterView: View {
             .navigationTitle(Strings.converterNavigationTitle)
             .padding(.top)
             // Автоматически запускаем расчёт при изменении любого из полей
-            .onChange(of: viewModel.amount) {
-                Task { await viewModel.convert() }
+            .onChange(of: viewModel.amount) { newValue in
+                let filtered = filterAmountInput(newValue)
+                if filtered != newValue {
+                    viewModel.amount = filtered
+                } else {
+                    Task { await viewModel.convert() }
+                }
             }
             .onChange(of: viewModel.fromCurrency) {
                 Task { await viewModel.convert() }
@@ -107,5 +112,34 @@ struct ConverterView: View {
         }
       
     }
+    
+    private func filterAmountInput(_ input: String) -> String {
+        var result = ""
+        var hasDecimalPoint = false
+        var digitsAfterDecimal = 0
+
+        for char in input {
+            if char.isWholeNumber {
+                if hasDecimalPoint {
+                    if digitsAfterDecimal < 2 {
+                        result.append(char)
+                        digitsAfterDecimal += 1
+                    }
+                } else {
+                    result.append(char)
+                }
+            } else if char == "." && !hasDecimalPoint {
+                result.append(char)
+                hasDecimalPoint = true
+            }
+    
+            if result.count >= 15 {
+                break
+            }
+        }
+
+        return result
+    }
+
     
 }
